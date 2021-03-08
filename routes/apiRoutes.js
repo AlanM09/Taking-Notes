@@ -1,8 +1,6 @@
 const fs = require("fs");
 const express = require("express");
 const app = express();
-
-
 const { v4: uuidV4 } = require("uuid");
 
 app.get("/notes", (req, res) => {
@@ -17,7 +15,6 @@ app.post("/notes", (req, res) => {
   newNote.id = uuidV4();
 
   let collection = JSON.parse(fs.readFileSync("./db/db.json", "UTF-8"));
-
   collection.push(newNote);
 
   fs.writeFileSync("./db/db.json", JSON.stringify(collection));
